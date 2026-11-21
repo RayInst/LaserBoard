@@ -23,11 +23,13 @@
 
 ### 下载与运行
 
-1. 在 [Releases](https://github.com/RayInst/LaserBoard/releases) 页面下载最新的 `LaserBoard_Win64.zip` 并解压到任意目录（路径尽量避免特殊字符）。
-2. 如需激光硬件输出，先启动 **Pangolin BEYOND**，再运行 `LaserBoard.exe`。
-3. 移动端（平板 / 手机）与电脑处于同一局域网下，打开配套控制端连接 NDI 源 `DRAW` 即可开始实时激光书写；也可直接在桌面端点击「画板窗」进行本地绘制测试。
+1. **Windows 桌面端**：在 [Releases](https://github.com/RayInst/LaserBoard/releases) 页面下载最新的 `LaserBoard_Win64.zip` 并解压到任意目录（路径尽量避免特殊字符）；如需激光硬件输出，先启动 **Pangolin BEYOND**，再运行 `LaserBoard.exe`。
+2. **移动端控制端**（与电脑处于同一局域网）：
+   - **Android（安卓端）**：直接在 [Releases](https://github.com/RayInst/LaserBoard/releases) 页面下载配套的 `laserboard.apk` 安装使用。
+   - **iOS / iPadOS（苹果端）**：请在 **App Store** 商店搜索下载 **Tmote**。
+3. 在移动端连接 NDI 视频源 `DRAW`（并将 TUIO 发送至电脑 IP 与默认端口 `3333`）即可开始实时激光书写；也可直接在桌面端点击「画板窗」进行本地绘制测试。
 
-压缩包已内置 `BEYONDIO.dll` 与 `Processing.NDI.Lib.x64.dll`，免安装、零配置，运行状态与待机画面自动保存。
+桌面压缩包已内置 `BEYONDIO.dll` 与 `Processing.NDI.Lib.x64.dll`，免安装、零配置，运行状态与待机画面自动保存。
 
 ### 授权与试用
 
@@ -65,11 +67,13 @@
 
 ### Download & Run
 
-1. Download the latest `LaserBoard_Win64.zip` from the [Releases](https://github.com/RayInst/LaserBoard/releases) page and extract it anywhere.
-2. For laser hardware output, launch **Pangolin BEYOND** first, then run `LaserBoard.exe`.
-3. Connect your tablet/phone on the same LAN to the NDI source `DRAW` to start drawing live, or click **Canvas** in the desktop top bar to draw locally.
+1. **Windows Desktop**: Download the latest `LaserBoard_Win64.zip` from the [Releases](https://github.com/RayInst/LaserBoard/releases) page and extract it anywhere. For laser hardware output, launch **Pangolin BEYOND** first, then run `LaserBoard.exe`.
+2. **Mobile Controller** (on the same LAN as the desktop):
+   - **Android**: Download `laserboard.apk` directly from the [Releases](https://github.com/RayInst/LaserBoard/releases) page and install it.
+   - **iOS / iPadOS**: Search for and download **Tmote** from the **App Store**.
+3. Connect the mobile app to the NDI source `DRAW` (and send TUIO to the desktop IP on default port `3333`) to start drawing live, or click **Canvas** in the desktop top bar to draw locally.
 
-The release archive already bundles `BEYONDIO.dll` and `Processing.NDI.Lib.x64.dll` — portable and ready out of the box.
+The desktop release archive already bundles `BEYONDIO.dll` and `Processing.NDI.Lib.x64.dll` — portable and ready out of the box.
 
 ### Licensing & Trial
 
