@@ -35,6 +35,7 @@
 
 - **未激活试用**：每次启动提供 **30 分钟全功能试用**，期间激光输出与 NDI 画板每隔 10 秒会叠加 2 秒矢量 `DEMO` 水印；30 分钟到期后自动关闭输出并通知移动端（重启软件可开启新一轮试用）。
 - **激活商业授权**：点击顶部试用状态徽章或展开「商业授权」面板，输入 `LBD-` 授权码联网激活，或导入离线 `license.dat`；授权绑定本机硬件特征码，支持联网解绑换机。
+- **购买授权**：访问 **[r1gy.com/product/laserboard](https://r1gy.com/product/laserboard)**。
 
 ### 版本更新
 
@@ -79,6 +80,7 @@ The desktop release archive already bundles `BEYONDIO.dll` and `Processing.NDI.L
 
 - **Unlicensed Trial**: Each launch grants a **30-minute full-feature trial**, overlaying a 2-second vector `DEMO` watermark every 10 seconds on laser and NDI outputs. Outputs stop cleanly on expiry (restart the app to begin another trial session).
 - **Commercial Activation**: Click the top-bar trial badge or open the License section to paste an `LBD-` online activation code or import an offline `license.dat`. Licenses are hardware-bound and can be deactivated online to transfer machines.
+- **Purchase License**: Visit **[r1gy.com/product/laserboard](https://r1gy.com/product/laserboard)**.
 
 ### Updates
 
