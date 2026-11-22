@@ -12,14 +12,22 @@
 
 | 模块 | 说明 |
 | --- | --- |
-| **低延迟触控绘制** | 移动端 NDI `"DRAW"` 实时画板回传 + TUIO UDP (`:3333`) 多点触控路由，支持本地预览窗直接书写与调试 |
-| **多区激光输出** | 支持 1~9 路独立画布（`Zone 1..9`）映射至 **Pangolin BEYOND**；支持单区聚焦、九宫格总览与自定义排序列数 |
+| **低延迟触控绘制** | 移动端 16:9 NDI `"DRAW"` 满高适配画板回传 + TUIO UDP (`:3333`) 多点触控路由与断线重连自适应，支持本地预览窗直接调试 |
+| **平板交互界面重设计** | 中央 1:1 绘画区完全满高；左侧支持垂直纯色光谱条、全按钮填充彩虹特效、以及带实时迷你激光预览与点数的 `Z1~Z9` 通道选择；右侧集成大图标展示/播放/圆弧撤销/清空按钮及大字号友情提示 |
+| **多区激光输出** | 支持 1~9 路独立画布（`Zone 1..9`）映射至 **Pangolin BEYOND**；单区聚焦、九宫格总览，并在各区右下角实时显示振镜点数与预估刷新率 |
+| **振镜自适应防闪烁** | 基于采样率与目标刷新率（默认 25 Hz）的自适应点流预算与保形抽稀优化（Ramer–Douglas–Peucker + 最近邻空跳排序 + 拐角驻留），避免单区点数过多引起频闪掉帧 |
 | **无缝走马灯滚动** | 开启滚动模式后，多路画布按排列顺序自动拼接并向左侧/右侧无缝循环接力滚动，速度与方向可实时调节 |
-| **色彩合成与拾色器** | 内置 5 种色彩模式（纯色 / 彩虹 / 水平彩虹 / 圆形彩虹 / 放射彩虹），支持色相滑块、预设色板与色彩动画相位速度 |
+| **色彩合成与拾色器** | 内置 5 种色彩模式（纯色 / 彩虹 / 水平彩虹 / 圆形彩虹 / 放射彩虹），支持垂直光谱滑块、桌面端拾色器与色彩动画相位速度 |
 | **待机展示与书写切换** | 支持一键保存当前画面为待机快照；**手握笔**图标为书写模式、**眼睛**图标为展示待机模式；支持闲置自动进入待机，点击画板立即唤醒书写 |
-| **振镜安全优化** | 复刻激光振镜采样步长、拐角驻留与消隐跳线插值算法，支持矢量模式、自适应降频保护与 60 FPS 稳定输出 |
-| **无头与低负载模式** | 窗口最小化或 `--headless` 纯后台运行时自动跳过冗余 UI 像素渲染，保持激光与 NDI/TUIO 零丢帧稳定输出 |
+| **无头与低负载模式** | 窗口最小化或 `--headless` 纯后台运行时自动跳过冗余 UI 像素渲染，并采用静态底图与字形位图缓存保障高帧率低 CPU 占用 |
 | **双语界面与权限自检** | 顶部一键切换 **中文 / EN**；自动检测 Windows UAC/UIPI 权限不匹配并支持一键以管理员身份重启以连接 BEYOND |
+
+### 最新更新（v1.6.0）
+
+- **宽屏平板 UI 全面重设计**：适配平板与手机宽屏比例，中央 1:1 绘画区完全占满高度；左侧集成了垂直光谱调色条、整块渐变填充的 4 种彩虹特效按钮，以及带有实时迷你激光预览与点数角标的 `Z1~Z9` 激光通道按钮；右侧提供大型书写/展示、滚动播放、圆弧回转撤销、清空按钮与清晰大字号友情提示。
+- **自适应防闪烁与点数可视化**：新增每区目标最低刷新率保护（默认 `25 Hz`），点数超预算时自动执行保形抽稀与最近邻跳线排序；在每路预览格右下角与提示面板中实时显示当前点数、预估 Hz 与建议上限（如 30k PPS 下建议 ≤ 1200 点）。
+- **触控重连稳定性修复**：修复平板端断开重连后因帧序号回退造成的短暂触控丢包，以及侧边栏异常丢包可能导致的触控会话锁定问题。
+- **授权购买快捷入口**：在授权状态栏与激活弹窗内新增官方购买直达按钮。
 
 ### 下载与运行
 
@@ -57,14 +65,22 @@
 
 | Module | Description |
 | --- | --- |
-| **Low-Latency Touch Drawing** | Live NDI `"DRAW"` video stream to mobile + TUIO UDP (`:3333`) multi-touch routing; also supports drawing directly inside the desktop canvas window |
-| **Multi-Zone Laser Output** | 1–9 independent canvases (`Zone 1–9`) mapped to **Pangolin BEYOND**; single-zone focus, multi-zone grid preview, and configurable column layout |
+| **Low-Latency Touch Drawing** | Widescreen 16:9 NDI `"DRAW"` video stream to mobile + resilient TUIO UDP (`:3333`) multi-touch routing with reconnect recovery and local preview drawing |
+| **Redesigned Tablet UI** | Full-height center 1:1 drawing area; left sidebar features vertical color spectrum slider, full-fill rainbow FX buttons, and live mini laser-preview `Z1–Z9` zone buttons; right sidebar places large Mode/Play/Undo/Clear buttons and high-readability tips |
+| **Multi-Zone Laser Output** | 1–9 independent canvases (`Zone 1–9`) mapped to **Pangolin BEYOND** with single-zone focus, grid preview, and live per-zone point count & Hz badges |
+| **Adaptive Flicker Guard** | Automatic point-budget protection (`25 Hz` default target) with shape-preserving RDP simplification, nearest-neighbor stroke ordering, and corner dwell |
 | **Seamless Marquee Scroll** | Automatically stitches active zones in order and scrolls continuously across all zones with real-time speed and direction control |
-| **Color Synthesis & Palette** | 5 built-in color modes (Solid / Rainbow / Horizontal / Circular / Radial), hue spectrum slider, quick swatches, and animated color speed |
+| **Color Synthesis & Palette** | 5 built-in color modes (Solid / Rainbow / Horizontal / Circular / Radial), vertical spectrum bar, desktop color picker, and animated color speed |
 | **Standby & Writing Modes** | Save any artwork as a persistent standby snapshot; distinct **Hand-Pen** (writing) and **Eye** (showcase/standby) icons; auto-standby on idle with instant wake-on-touch |
-| **Galvo Stream Optimization** | Step-size resampling, corner dwell, and blanked jump interpolation with adaptive point-budget protection and rock-solid 60 FPS output |
-| **Headless & Zero-Redundancy** | Automatically skips redundant UI pixel rendering when minimized or running with `--headless`, keeping laser, TUIO, and NDI pipelines jitter-free |
+| **Headless & Zero-Redundancy** | Automatically skips redundant UI pixel rendering when minimized or running with `--headless`, using static backdrop & glyph caches for high-FPS efficiency |
 | **Bilingual UI & UAC Check** | Switch **中文 / EN** anytime in the top bar; detects Windows UAC/UIPI elevation mismatch against `BEYOND.exe` with one-click Administrator restart |
+
+### What's New in v1.6.0
+
+- **Redesigned Widescreen Tablet UI**: Full-height 1:1 center canvas on 16:9 NDI streams; left sidebar with vertical solid-color slider, full-fill 2D rainbow effect cards, and `Z1–Z9` zone buttons featuring live mini laser stroke previews and point counts; right sidebar with large Standby/Play/Curved-Undo/Clear buttons and clear large-font guidance including exact recommended point limits.
+- **Adaptive Galvo Flicker Guard & Point Badges**: Added per-zone target laser refresh rate protection (`25 Hz` default) with shape-preserving simplification, real-time bottom-right point/Hz badges, and live load bar.
+- **TUIO Reconnect & Session Reliability**: Fixed packet drops after mobile reconnect (`fseq` reset) and prevented lost `End` UDP packets from locking a touch session ID.
+- **Direct License Purchase Link**: Added an instant purchase shortcut button inside the license panel and status dialog.
 
 ### Download & Run
 
